@@ -100,13 +100,39 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
+        // user_login
+        if ($pathinfo === '/login') {
+            if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                $allow = array_merge($allow, array('GET', 'HEAD'));
+                goto not_user_login;
+            }
+
+            return array (  '_controller' => 'AppBundle\\Controller\\UserController::loginAction',  '_route' => 'user_login',);
+        }
+        not_user_login:
+
+        // user_register
+        if ($pathinfo === '/register') {
+            return array (  '_controller' => 'AppBundle\\Controller\\UserController::registerAction',  '_route' => 'user_register',);
+        }
+
         // homepage
         if (rtrim($pathinfo, '/') === '') {
             if (substr($pathinfo, -1) !== '/') {
                 return $this->redirect($pathinfo.'/', 'homepage');
             }
 
-            return array (  '_controller' => 'AppBundle\\Controller\\DefaultController::indexAction',  '_route' => 'homepage',);
+            return array (  '_controller' => 'AppBundle\\Controller\\UserController::registerAction',  '_route' => 'homepage',);
+        }
+
+        // user_login_check
+        if ($pathinfo === '/login_check') {
+            return array('_route' => 'user_login_check');
+        }
+
+        // user_admin
+        if ($pathinfo === '/admin') {
+            return array (  '_controller' => 'AppBundle\\Controller\\AdminController::indexAction',  '_route' => 'user_admin',);
         }
 
         throw 0 < count($allow) ? new MethodNotAllowedException(array_unique($allow)) : new ResourceNotFoundException();

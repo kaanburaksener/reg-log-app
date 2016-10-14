@@ -1,3 +1,15 @@
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation
+
+# basic routes
+homepage:
+    path: /
+    defaults: { _controller: AppBundle:User:register }
+
+user_login_check:
+    path: /login_check
+
+user_admin:
+    path: /admin
+    defaults: { _controller: AppBundle:Admin:index }
