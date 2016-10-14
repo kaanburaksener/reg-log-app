@@ -10,6 +10,5 @@ homepage:
 user_login_check:
     path: /login_check
 
-user_admin:
-    path: /admin
-    defaults: { _controller: AppBundle:Admin:index }
+user_logout:
+    path: /logout

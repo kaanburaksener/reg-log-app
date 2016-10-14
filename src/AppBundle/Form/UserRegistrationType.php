@@ -28,16 +28,18 @@ class UserRegistrationType extends AbstractType
     {
         $builder
             ->add('username', TextType::class, [
-                'label' => false,
-                'required' => true,
-                'attr'  => [
+                'label'     => false,
+                'required'  => true,
+                'attr'      => [
+                    'class'       => 'input pass',
                     'placeholder' => 'Username'
                 ]
             ])
             ->add('email', EmailType::class, [
-                'label' => false,
-                'required' => true,
-                'attr'  => [
+                'label'     => false,
+                'required'  => true,
+                'attr'      => [
+                    'class'       => 'input pass',
                     'placeholder' => 'Email'
                 ]
             ])
@@ -46,18 +48,24 @@ class UserRegistrationType extends AbstractType
                 'first_options'  => [
                     'label' => false,
                     'attr'  => [
+                        'class'       => 'input pass',
                         'placeholder' => 'Password'
                     ]
                 ],
                 'second_options' => [
                     'label' => false,
                     'attr'  => [
-                        'placeholder' => 'Repeat Password'
+                        'class'       => 'input pass',
+                        'placeholder' => 'Repeat Password',
+                        'onChange'    => 'checkPasswordMatch();'
                     ]
                 ]
             ])
             ->add('submit', SubmitType::class, [
-                'label' => 'Register!'
+                'label' => 'Register!',
+                'attr'  => [
+                    'class' => 'input-button'
+                ]
             ]);
     }
 

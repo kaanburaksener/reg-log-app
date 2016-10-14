@@ -9,11 +9,14 @@
 namespace AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 class AdminController extends Controller
 {
-    public function indexAction(Request $request)
+    /**
+     * @Route("/admin", name="user_admin")
+     */
+    public function indexAction()
     {
         return $this->render(':admin:index.html.twig');
     }

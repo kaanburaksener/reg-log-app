@@ -1,5 +1,4 @@
 security:
-
     encoders:
         AppBundle\Entity\User: bcrypt
 
@@ -23,8 +22,8 @@ security:
                 default_target_path: user_admin
 
             logout:
-                path: /logout
-                target: /
+                path: user_logout
+                target: homepage
 
     access_control:
         - { path: ^/login,            roles: IS_AUTHENTICATED_ANONYMOUSLY }

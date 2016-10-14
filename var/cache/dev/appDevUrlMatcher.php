@@ -100,16 +100,15 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
+        // user_admin
+        if ($pathinfo === '/admin') {
+            return array (  '_controller' => 'AppBundle\\Controller\\AdminController::indexAction',  '_route' => 'user_admin',);
+        }
+
         // user_login
         if ($pathinfo === '/login') {
-            if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
-                $allow = array_merge($allow, array('GET', 'HEAD'));
-                goto not_user_login;
-            }
-
             return array (  '_controller' => 'AppBundle\\Controller\\UserController::loginAction',  '_route' => 'user_login',);
         }
-        not_user_login:
 
         // user_register
         if ($pathinfo === '/register') {
@@ -125,14 +124,17 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'AppBundle\\Controller\\UserController::registerAction',  '_route' => 'homepage',);
         }
 
-        // user_login_check
-        if ($pathinfo === '/login_check') {
-            return array('_route' => 'user_login_check');
-        }
+        if (0 === strpos($pathinfo, '/log')) {
+            // user_login_check
+            if ($pathinfo === '/login_check') {
+                return array('_route' => 'user_login_check');
+            }
 
-        // user_admin
-        if ($pathinfo === '/admin') {
-            return array (  '_controller' => 'AppBundle\\Controller\\AdminController::indexAction',  '_route' => 'user_admin',);
+            // user_logout
+            if ($pathinfo === '/logout') {
+                return array('_route' => 'user_logout');
+            }
+
         }
 
         throw 0 < count($allow) ? new MethodNotAllowedException(array_unique($allow)) : new ResourceNotFoundException();

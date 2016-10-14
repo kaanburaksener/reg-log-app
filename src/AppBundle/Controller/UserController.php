@@ -14,13 +14,11 @@ use AppBundle\Form\UserRegistrationType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
 class UserController extends Controller
 {
     /**
      * @Route("/login", name="user_login")
-     * @Method("GET")
      */
     public function loginAction()
     {
@@ -51,6 +49,7 @@ class UserController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
 
+            // encrypt the password entered
             $password = $this->get('security.password_encoder')
                 ->encodePassword($user, $user->getPlainPassword());
 
