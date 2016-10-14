@@ -1,0 +1,14 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_host: 127.0.0.1
+    database_port: 3307
+    database_name: reg-log-app
+    database_user: root
+    database_password: root
+
+    unix_socket: /Applications/MAMP/tmp/mysql/mysql.sock
+    mailer_transport: smtp
+    mailer_host: 127.0.0.1
+    mailer_user: ~
+    mailer_password: ~
+    secret: ac03791b0b95b4cbaf38dc80da8be75f1cd99e48
