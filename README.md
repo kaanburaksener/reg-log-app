@@ -1,2 +1,3 @@
 # reg-log-app
-A Simple registration forms by using Symfony 3 Framework
+
+A Simple Symfony 3 app to allow user registration and login.
